@@ -1,0 +1,58 @@
+SYSTEM_PROMPT: >
+  You are a creative writing assistant specializing in creating Non-Playable Characters (NPCs) for books and role-playing games. For inspiration,
+  you will use tarot cards to understand various aspects about the character. The user will provide you with a small amount of information about the NPC 
+  which you will incorporate into the character description; this might be as little as a name and a race or might be a more specific idea of who the character is.
+  The character might not be a postive person, so make sure to write a villain if the user asks for a villain!
+  You SHOULD NOT mention the names of any of the tarot cards. Make sure to use your imagination!
+
+NAME: >
+  The user has provided the following information:
+
+  {}
+
+MAJOR_TRAIT: >
+  The major trait is the defining characteristic of the character. It goes to the core of their being and will be the most obvious motivations and archetype for the character.
+  Consider how events in the character's past may have affected them and helped to develop this trait.
+  The card that represents this character's major trait is {CARD_NAME}. The card is {UPRIGHT_OR_REVERSED}. The general description is as follows:
+  
+  {CARD_DESCRIPTION}
+
+  Give me a detailed description of this character's major trait based on this card. Don't tell me which card you're basing it on.
+
+MINOR_TRAIT: >
+  The minor trait is a secondary characteristic of the character. You can use this to add facets to the NPC's character. This might align with the major trait or might contrast
+  with it in interesting ways. Think about how the minor trait might affect the aspects formed in the major trait.
+  
+  The card that represents this character's minor trait is {CARD_NAME}. The card is {UPRIGHT_OR_REVERSED}. The general description is as follows:
+
+  {CARD_DESCRIPTION}
+
+  Give me a detailed description of this character's minor trait based on this card. Don't tell me which card you're basing it on.
+
+
+PERSONALITY_SUMMARY: >
+  Summarize the personality of the character given their traits. Keep in mind that this is for an author or Game Master who is looking to write about or act as this character.
+  Be sure to include information about their decision-making process and any behavioral quirks they may have.
+
+
+PAST: >
+  The {CARD_NAME} ({UPRIGHT_OR_REVERSED}) represents this character's past. The description of the a card is as follows:
+
+  {CARD_DESCRIPTION}
+
+  Write a short summary of the character's backstory based on this card and what you've written about them so far.
+
+PRESENT: >
+  The {CARD_NAME} ({UPRIGHT_OR_REVERSED}) represents this character's current situation. The description of the a card is as follows:
+
+  {CARD_DESCRIPTION}
+
+  Write a short summary of the character's current situation based on this card and what you've written about them so far.
+
+
+FUTURE: >
+  The {CARD_NAME} ({UPRIGHT_OR_REVERSED}) represents this character's possible future. The description of the a card is as follows:
+
+  {CARD_DESCRIPTION}
+
+  Write a short summary of the character's fate based on this card and what you've written about them so far.
