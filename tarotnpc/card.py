@@ -1,54 +1,46 @@
+import random
 from enum import Enum
 from pathlib import Path
 
 from strictyaml import load
 
 
-class Suit(str, Enum):
-    WANDS = "wands"
-    CUPS = "cups"
-    SWORDS = "swords"
-    PENTACLES = "pentacles"
-
-
 class Card:
-    def __init__(self, description: str, reversed_description: str):
+    def __init__(self, title: str, description: str, reversed_description: str):
+        self.title = title
         self.description = description
         self.reversed_description = reversed_description
+        self.is_reversed = False
 
-
-class MajorArcana(Card):
-    def __init__(self, title: str, description: str, reversed_description: str):
-        super().__init__(description, reversed_description)
-        self.title = title
+    def is_reversed(self) -> bool:
+        return self.is_reversed
 
     def __repr__(self) -> str:
-        return self.title.upper()
+        return self.title.title()
 
 
-class MinorArcana(Card):
-    def __init__(
-        self, suit: str, value: int, description: str, reversed_description: str
-    ):
-        super().__init__(description, reversed_description)
-        self.suit = suit
-        self.value = value
-
-    def __repr__(self) -> str:
-        return f"{self.value} of {self.suit.upper()}"
-
-
-def get_major_arcana(path: Path = Path("data/major_arcana.yaml")) -> list[MajorArcana]:
+def get_major_arcana(path: Path = Path("data/major_arcana.yaml")) -> list[Card]:
     with open(path, "r") as F:
-        data = load(F.read())
-    return [MajorArcana(**card) for card in data]
+        data = load(F.read()).data
+    return [Card(**card) for card in data]
 
 
-def get_minor_arcana(path: Path = Path("data/minor_arcana.yaml")) -> list[MinorArcana]:
+def get_minor_arcana(path: Path = Path("data/minor_arcana.yaml")) -> list[Card]:
     with open(path, "r") as F:
-        data = load(F.read())
-    return [MinorArcana(**card) for card in data]
+        data = load(F.read()).data
+    return [Card(**card) for card in data]
 
 
 def get_all_cards() -> list[Card]:
     return get_major_arcana() + get_minor_arcana()
+
+
+def get_deck() -> list[Card]:
+    cards = get_all_cards()
+    for card in cards:
+        card.is_reversed = random.choice([True, False])
+    return cards
+
+
+def draw(cards: list[Card], n: int) -> list[Card]:
+    return random.sample(cards, n)
