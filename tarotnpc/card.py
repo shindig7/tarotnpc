@@ -1,5 +1,7 @@
-from dataclasses import dataclass
 from enum import Enum
+from pathlib import Path
+
+from strictyaml import load
 
 
 class Suit(str, Enum):
@@ -34,3 +36,19 @@ class MinorArcana(Card):
 
     def __repr__(self) -> str:
         return f"{self.value} of {self.suit.upper()}"
+
+
+def get_major_arcana(path: Path = Path("data/major_arcana.yaml")) -> list[MajorArcana]:
+    with open(path, "r") as F:
+        data = load(F.read())
+    return [MajorArcana(**card) for card in data]
+
+
+def get_minor_arcana(path: Path = Path("data/minor_arcana.yaml")) -> list[MinorArcana]:
+    with open(path, "r") as F:
+        data = load(F.read())
+    return [MinorArcana(**card) for card in data]
+
+
+def get_all_cards() -> list[Card]:
+    return get_major_arcana() + get_minor_arcana()
