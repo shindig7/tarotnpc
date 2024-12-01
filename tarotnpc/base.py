@@ -2,6 +2,7 @@ from tarotnpc.card import draw, get_deck
 from tarotnpc.llm import Conversation, get_chat_completion
 from tarotnpc.prompts import format_prompt, load_prompts
 
+
 def generate_npc(seed_prompt: str) -> dict:
     output = {}
     prompts = load_prompts()
@@ -20,9 +21,7 @@ def generate_npc(seed_prompt: str) -> dict:
     }
 
     starter_prompt = (
-        prompts.get("SYSTEM_PROMPT")
-        + "\n"
-        + prompts.get("SEED").format(seed_prompt)
+        prompts.get("SYSTEM_PROMPT") + "\n" + prompts.get("SEED").format(seed_prompt)
     )
     conversation = Conversation(
         [

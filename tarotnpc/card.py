@@ -1,8 +1,7 @@
 import random
-from enum import Enum
 from pathlib import Path
 
-from strictyaml import load
+from strictyaml import load  # type: ignore
 
 
 class Card:

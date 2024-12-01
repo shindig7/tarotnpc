@@ -1,4 +1,4 @@
-from strictyaml import load
+from strictyaml import load  # type: ignore
 
 from tarotnpc.card import Card
 
